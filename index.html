@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Landschapspark Buurserbeek – interactieve kaart (versie 6.12)</title>
+<title>Landschapspark Buurserbeek – interactieve kaart (versie 6.13)</title>
 <style>
 
 :root {
@@ -260,9 +260,12 @@ header h1 {
 .historie-cta button,.history-back{border:0;border-radius:9px;background:#28533d;color:white;padding:12px 17px;font-weight:700;cursor:pointer;font-size:15px}
 .historie-cta button:hover,.history-back:hover{background:#386f50}
 .history-back{margin:0 0 20px;background:#496b53}
-body.history-page main > :not(#historieVerhalen){display:none!important}
+body.history-page main > :not(#historieVerhalen):not(#historyDialog){display:none!important}
 body.history-page main #historieVerhalen{display:block!important;margin:20px 0 45px}
 @media(max-width:650px){.historie-cta button{width:100%}.history-section{padding:18px}}
+
+/* 6.13: modaal leesvenster zichtbaar houden op Historie-subpagina */
+body.history-page #historyDialog[open]{display:block!important;}
 </style>
 </head>
 <body>
@@ -325,7 +328,7 @@ body.history-page main #historieVerhalen{display:block!important;margin:20px 0 4
   </section>
 </main>
 <footer>
-  Proefversie 6.12 voor de projectgroep. Historie-artikelen ter beoordeling; Parkeerhotspots zijn handmatig te verplaatsen en te benoemen; GPS-coördinaten blijven zoals aangeleverd. Controleer parkeerstatus en bereikbaarheid vóór publicatie.
+  Proefversie 6.13 voor de projectgroep. Historie-artikelen ter beoordeling; Parkeerhotspots zijn handmatig te verplaatsen en te benoemen; GPS-coördinaten blijven zoals aangeleverd. Controleer parkeerstatus en bereikbaarheid vóór publicatie.
 </footer>
 <script>
 const spots = [{"id": 1, "name": "Buurserbeek", "x": 64, "y": 49, "categories": ["Water en landschap", "Natuurgebieden"], "theme": "Water, natuur en verbinding", "intro": "Volg de beek die het landschap verbindt.", "detail": "Achtergrondinformatie over de beek, haar geschiedenis en routes kunnen hier later worden aangevuld."}, {"id": 2, "name": "Haaksbergerveen", "x": 51, "y": 75, "categories": ["Natuurgebieden"], "theme": "Hoogveen en turfgeschiedenis", "intro": "Ontdek hoogveen, veenvorming en de geschiedenis van turfwinning.", "detail": "Hier kunnen verhalen, natuurbeelden en wandelroutes worden toegevoegd."}, {"id": 3, "name": "Witte Veen", "x": 93, "y": 48, "categories": ["Natuurgebieden"], "theme": "Natuur en landschap", "intro": "Een afwisselend natuurgebied met heide, bos en natte natuur.", "detail": "Hotspot 3 is in het Witte Veen geplaatst op basis van de gebiedskaart. Een geschikt toegangspunt voor navigatie wordt later vastgesteld."}, {"id": 4, "name": "Buurserzand", "x": 54, "y": 36, "categories": ["Natuurgebieden"], "theme": "Heide en jeneverbes", "intro": "Ontdek heide, jeneverbessen en het afwisselende landschap.", "detail": "Later kunnen we informatie toevoegen over begrazing, flora, fauna en wandelroutes."}, {"id": 5, "name": "Het Lankheet", "x": 13, "y": 78, "categories": ["Natuurgebieden", "Water en landschap"], "theme": "Water, landbouw en erfgoed", "intro": "Ontdek het landgoed en de historische vloeiweiden.", "detail": "Later volgen verhalen over de graslandbevloeiing en wandelroutes."}, {"id": 6, "name": "De Bommelas", "x": 59, "y": 37, "categories": ["Historie en erfgoed"], "theme": "Twents boerenleven", "intro": "Maak kennis met het historische lös hoes in het Buurserzand.", "detail": "Historische foto’s en achtergrondverhalen kunnen later worden toegevoegd."}, {"id": 7, "name": "Buursermeertje", "x": null, "y": null, "categories": ["Water en landschap", "Natuurgebieden"], "theme": "Water en natuur", "intro": "Een bijzondere plek in het Buurserzand.", "detail": "Locatie en achtergrondinformatie worden nog gecontroleerd en aangevuld."}, {"id": 8, "name": "De Wakel", "x": null, "y": null, "categories": ["Beleven en ontdekken"], "theme": "Ontmoeten en ontdekken", "intro": "Een plek om het landschap en de omgeving verder te ontdekken.", "detail": "Praktische informatie en de juiste kaartpositie volgen."}, {"id": 9, "name": "Schaapskooi", "x": null, "y": null, "categories": ["Beleven en ontdekken", "Historie en erfgoed"], "theme": "Landschap en beheer", "intro": "Ontdek het verhaal van de schaapskooi en het landschap.", "detail": "Welke schaapskooi wordt bedoeld en waar deze ligt, stellen we nog vast."}, {"id": 10, "name": "Waterpark Het Lankheet", "x": null, "y": null, "categories": ["Water en landschap", "Beleven en ontdekken"], "theme": "Water en innovatie", "intro": "Ontdek hoe water en landschap samenkomen.", "detail": "De exacte bezoeklocatie en aanvullende informatie volgen."}, {"id": 11, "name": "Watermolens bij de Haarmühle", "x": null, "y": null, "categories": ["Historie en erfgoed", "Water en landschap"], "theme": "Historische waterkracht", "intro": "Ontdek het erfgoed van de watermolens bij de Haarmühle.", "detail": "De specifieke locatie(s), benaming en bereikbaarheid worden nog gecontroleerd."}, {"id": 12, "name": "Watermolen in Haaksbergen", "x": null, "y": null, "categories": ["Historie en erfgoed", "Water en landschap"], "theme": "Historische waterkracht", "intro": "Een verhaal over de historische watermolen in Haaksbergen.", "detail": "De exacte molen en bijbehorende kaartpositie moeten nog worden vastgesteld."}];
