@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Landschapspark Buurserbeek – interactieve kaart (versie 6.13)</title>
+<title>Bezoekersversie 6.14 · Landschapspark Buurserbeek – interactieve kaart (versie 6.13)</title>
 <style>
 
 :root {
@@ -224,6 +224,8 @@ header h1 {
 .num.parking{background:#2866a2!important;color:#fff!important;border-radius:5px!important}
 #navinfo a{display:inline-block;margin:8px 0;text-decoration:underline;font-weight:650}
 
+/* Versie 6.14: bezoekersomgeving zonder bewerkinterface */
+#editToolbar{display:none!important}
 /* Versie 6.8: herstelde bewerkmodus parkeerhotspots */
 .edit-toolbar{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:12px 0;padding:12px;background:#f3f2e8;border:1px solid #ccd4c5;border-radius:12px}
 .edit-toolbar button,.edit-toolbar input{font:inherit;border-radius:8px;padding:8px 10px;border:1px solid #aebdad;background:#fff;color:#234d3a}
@@ -328,7 +330,7 @@ body.history-page #historyDialog[open]{display:block!important;}
   </section>
 </main>
 <footer>
-  Proefversie 6.13 voor de projectgroep. Historie-artikelen ter beoordeling; Parkeerhotspots zijn handmatig te verplaatsen en te benoemen; GPS-coördinaten blijven zoals aangeleverd. Controleer parkeerstatus en bereikbaarheid vóór publicatie.
+  Versie 6.14 · Bezoekersomgeving. Historie-artikelen ter beoordeling; controleer parkeerstatus en bereikbaarheid vóór publicatie.
 </footer>
 <script>
 const spots = [{"id": 1, "name": "Buurserbeek", "x": 64, "y": 49, "categories": ["Water en landschap", "Natuurgebieden"], "theme": "Water, natuur en verbinding", "intro": "Volg de beek die het landschap verbindt.", "detail": "Achtergrondinformatie over de beek, haar geschiedenis en routes kunnen hier later worden aangevuld."}, {"id": 2, "name": "Haaksbergerveen", "x": 51, "y": 75, "categories": ["Natuurgebieden"], "theme": "Hoogveen en turfgeschiedenis", "intro": "Ontdek hoogveen, veenvorming en de geschiedenis van turfwinning.", "detail": "Hier kunnen verhalen, natuurbeelden en wandelroutes worden toegevoegd."}, {"id": 3, "name": "Witte Veen", "x": 93, "y": 48, "categories": ["Natuurgebieden"], "theme": "Natuur en landschap", "intro": "Een afwisselend natuurgebied met heide, bos en natte natuur.", "detail": "Hotspot 3 is in het Witte Veen geplaatst op basis van de gebiedskaart. Een geschikt toegangspunt voor navigatie wordt later vastgesteld."}, {"id": 4, "name": "Buurserzand", "x": 54, "y": 36, "categories": ["Natuurgebieden"], "theme": "Heide en jeneverbes", "intro": "Ontdek heide, jeneverbessen en het afwisselende landschap.", "detail": "Later kunnen we informatie toevoegen over begrazing, flora, fauna en wandelroutes."}, {"id": 5, "name": "Het Lankheet", "x": 13, "y": 78, "categories": ["Natuurgebieden", "Water en landschap"], "theme": "Water, landbouw en erfgoed", "intro": "Ontdek het landgoed en de historische vloeiweiden.", "detail": "Later volgen verhalen over de graslandbevloeiing en wandelroutes."}, {"id": 6, "name": "De Bommelas", "x": 59, "y": 37, "categories": ["Historie en erfgoed"], "theme": "Twents boerenleven", "intro": "Maak kennis met het historische lös hoes in het Buurserzand.", "detail": "Historische foto’s en achtergrondverhalen kunnen later worden toegevoegd."}, {"id": 7, "name": "Buursermeertje", "x": null, "y": null, "categories": ["Water en landschap", "Natuurgebieden"], "theme": "Water en natuur", "intro": "Een bijzondere plek in het Buurserzand.", "detail": "Locatie en achtergrondinformatie worden nog gecontroleerd en aangevuld."}, {"id": 8, "name": "De Wakel", "x": null, "y": null, "categories": ["Beleven en ontdekken"], "theme": "Ontmoeten en ontdekken", "intro": "Een plek om het landschap en de omgeving verder te ontdekken.", "detail": "Praktische informatie en de juiste kaartpositie volgen."}, {"id": 9, "name": "Schaapskooi", "x": null, "y": null, "categories": ["Beleven en ontdekken", "Historie en erfgoed"], "theme": "Landschap en beheer", "intro": "Ontdek het verhaal van de schaapskooi en het landschap.", "detail": "Welke schaapskooi wordt bedoeld en waar deze ligt, stellen we nog vast."}, {"id": 10, "name": "Waterpark Het Lankheet", "x": null, "y": null, "categories": ["Water en landschap", "Beleven en ontdekken"], "theme": "Water en innovatie", "intro": "Ontdek hoe water en landschap samenkomen.", "detail": "De exacte bezoeklocatie en aanvullende informatie volgen."}, {"id": 11, "name": "Watermolens bij de Haarmühle", "x": null, "y": null, "categories": ["Historie en erfgoed", "Water en landschap"], "theme": "Historische waterkracht", "intro": "Ontdek het erfgoed van de watermolens bij de Haarmühle.", "detail": "De specifieke locatie(s), benaming en bereikbaarheid worden nog gecontroleerd."}, {"id": 12, "name": "Watermolen in Haaksbergen", "x": null, "y": null, "categories": ["Historie en erfgoed", "Water en landschap"], "theme": "Historische waterkracht", "intro": "Een verhaal over de historische watermolen in Haaksbergen.", "detail": "De exacte molen en bijbehorende kaartpositie moeten nog worden vastgesteld."}];
@@ -356,7 +358,7 @@ function applyParking(data){
   if(Number.isFinite(item.x)&&Number.isFinite(item.y)){p.x=Math.min(98,Math.max(2,item.x));p.y=Math.min(98,Math.max(2,item.y));}
  }
 }
-try{const stored=localStorage.getItem(parkingStorageKey);if(stored)applyParking(JSON.parse(stored));}catch(e){}
+/* Bezoekers zien uitsluitend de gepubliceerde kaartposities, niet lokale editorwijzigingen. */
 function syncParkingForm(){
  const p=parkingSpots.find(v=>v.id===selectedParkingId);if(p){document.getElementById('parkingChoice').value=p.id;document.getElementById('parkingName').value=p.name;}
 }
@@ -454,7 +456,7 @@ function render(){
  categories.forEach(cat=>{let b=document.createElement('button');b.type='button';b.setAttribute('aria-label',cat);b.title=cat;b.setAttribute('aria-pressed',String(active===cat));b.innerHTML=(cat==='Recreatie'?cyclistIcon:filterIcons[cat])+'<span class="filter-label">'+filterLabels[cat]+'</span>';b.addEventListener('click',()=>{active=cat;render()});filters.appendChild(b)});
  const visible=[...spots,...parkingSpots].filter(s=>active==='Alles'||s.categories.includes(active));
  visible.forEach(s=>{
- if(s.x!==null&&s.y!==null){const b=document.createElement('button');b.className='pin'+(s.lat!==undefined?' parking-pin':'');b.textContent=s.lat!==undefined?'P':s.id;b.style.left=s.x+'%';b.style.top=s.y+'%';b.dataset.id=s.id;b.setAttribute('aria-label','Bekijk '+s.name);b.setAttribute('aria-pressed',String(current?.id===s.id));b.addEventListener('click',()=>{if(s.lat!==undefined)selectParkingForEdit(s);selectSpot(s)});if(s.lat!==undefined&&editParking)enableParkingDrag(b,s);pins.appendChild(b)}
+ if(s.x!==null&&s.y!==null){const b=document.createElement('button');b.className='pin'+(s.lat!==undefined?' parking-pin':'');b.textContent=s.lat!==undefined?'P':s.id;b.style.left=s.x+'%';b.style.top=s.y+'%';b.dataset.id=s.id;b.setAttribute('aria-label','Bekijk '+s.name);b.setAttribute('aria-pressed',String(current?.id===s.id));b.addEventListener('click',()=>{if(s.lat!==undefined)selectParkingForEdit(s);selectSpot(s)});if(false)enableParkingDrag(b,s);pins.appendChild(b)}
  const l=document.createElement('button');const n=document.createElement('span');n.className='num'+(s.lat!==undefined?' parking':'');n.textContent=s.lat!==undefined?'P':s.id;l.appendChild(n);const t=document.createElement('span');t.textContent=s.name;
  if(s.x===null){const small=document.createElement('small');small.textContent='Kaartpositie nog vast te stellen';t.appendChild(small)}l.appendChild(t);
  l.addEventListener('click',()=>{if(s.lat!==undefined)selectParkingForEdit(s);selectSpot(s);document.querySelector('.story').scrollIntoView({behavior:'smooth',block:'nearest'})});legend.appendChild(l);
