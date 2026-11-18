@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Landschapspark Buurserbeek · versie 6.26 · Bezoekers</title>
+<title>Landschapspark Buurserbeek · versie 6.27 · Bezoekers</title>
 <style>
 
 :root {
@@ -287,6 +287,24 @@ body.history-page #historyDialog[open]{display:block!important;}
 .intro .intro-trial { margin-top:5px; font-style:italic; font-size:13px; color:#647468; }
 .intro .tag { margin-top:5px; }
 @media(max-width:760px) { .intro {padding:16px 17px;gap:9px;} .intro p {font-size:13px;} .intro .intro-lead {font-size:20px;} }
+
+/* 6.27: tekst en ruimte geoptimaliseerd voor desktop, tablet en telefoon */
+.intro .intro-tablet, .intro .intro-mobile {display:none;}
+@media (min-width: 601px) and (max-width: 1024px) {
+  .intro {padding:14px 18px;gap:7px;}
+  .intro > p:not(.intro-tablet) {display:none;}
+  .intro .intro-tablet {display:block;font-size:14px;line-height:1.5;}
+  .intro .intro-tablet.intro-lead {font-size:21px;line-height:1.25;}
+  .intro .tag {margin-top:0;}
+}
+@media (max-width: 600px) {
+  .intro {padding:11px 13px;gap:5px;}
+  .intro > p:not(.intro-mobile) {display:none;}
+  .intro .intro-mobile {display:block;font-size:13px;line-height:1.4;}
+  .intro .intro-mobile.intro-lead {font-size:18px;line-height:1.23;}
+  .intro .intro-mobile.intro-trial {font-size:11px;line-height:1.35;}
+  .intro .tag {display:none;}
+}
 </style>
 </head>
 <body>
@@ -301,6 +319,14 @@ body.history-page #historyDialog[open]{display:block!important;}
     <p>Van rust en ruimte tot wandelen, fietsen en recreëren: het landschap nodigt uit om op ontdekking te gaan.</p>
     <p class="intro-action"><strong>Ontdek het Landschapspark Buurserbeek!</strong> Kies hieronder een rubriek en klik vervolgens op een genummerde plek op de kaart. Ontdek de verhalen, bezienswaardigheden en mogelijkheden die deze omgeving zo bijzonder maken.</p>
     <p class="intro-trial">Deze eerste proefversie vormt het vertrekpunt voor onze digitale ontdekkaart. Samen bouwen we verder aan een plek waar natuur, historie, recreatie en beleving samenkomen.</p>
+    <p class="intro-tablet intro-lead">Een landschap om in te verdwalen en verhalen om bij stil te staan.</p>
+    <p class="intro-tablet">Langs de Buurserbeek komen natuur, historie en bijzondere plekken samen. Ontdek het landschap, de verhalen en de mogelijkheden om te wandelen, fietsen en recreëren.</p>
+    <p class="intro-tablet">Kies een rubriek en tik op een genummerde plek op de kaart.</p>
+    <p class="intro-tablet intro-trial">Deze proefversie is het vertrekpunt voor onze digitale ontdekkaart.</p>
+    <p class="intro-mobile intro-lead">Een landschap om in te verdwalen en verhalen om bij stil te staan.</p>
+    <p class="intro-mobile">Ontdek de natuur, historie en bijzondere plekken langs de Buurserbeek.</p>
+    <p class="intro-mobile">Kies een rubriek en tik op een genummerde plek op de kaart.</p>
+    <p class="intro-mobile intro-trial">Deze proefversie is het vertrekpunt voor onze digitale ontdekkaart.</p>
     <span class="tag">Proefontwerp achtergrond · ter beoordeling</span>
   </div>
   <nav class="filterbar" id="filters" aria-label="Filter hotspots"></nav>
