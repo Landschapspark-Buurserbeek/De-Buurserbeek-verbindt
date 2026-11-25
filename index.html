@@ -524,6 +524,15 @@ function selectSpot(s){
  detailElement.textContent=fullDescription ? '' : s.detail;
  detailElement.style.display=fullDescription ? 'none' : '';
  const nav=document.getElementById('navinfo'); nav.textContent='';
+ if(parkingSpots.includes(s)){
+  document.getElementById('theme').textContent='';
+  introElement.textContent='';detailElement.textContent='';detailElement.style.display='none';
+  if(Number.isFinite(s.lat)&&Number.isFinite(s.lon)){
+   const a=document.createElement('a');a.href='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(s.lat+','+s.lon);a.target='_blank';a.rel='noopener noreferrer';a.textContent='Open navigatie';nav.appendChild(a);
+  }
+  document.querySelectorAll('.pin').forEach(p=>p.setAttribute('aria-pressed',String(p.dataset.id==s.id)));return;
+ }
+
  if(s.photo){
   const photo=document.createElement('img');
   photo.src=s.photo;
