@@ -532,7 +532,7 @@ function selectSpot(s){
   }
   if(s.photo){
    const photo=document.createElement('img');photo.src=s.photo;photo.alt='Foto van '+s.name;photo.loading='lazy';photo.style.cssText='display:block;width:100%;max-width:480px;height:auto;border-radius:12px;margin:12px 0';
-   const link=document.createElement('a');link.href=s.photo;link.target='_blank';link.rel='noopener';link.title='Bekijk de foto groter';link.appendChild(photo);nav.appendChild(link);
+   const link=document.createElement('button');link.type='button';link.title='Bekijk de foto groter';link.style.cssText='display:block;border:0;background:none;padding:0;max-width:100%;cursor:zoom-in';photo.style.cursor='zoom-in';link.appendChild(photo);link.addEventListener('click',()=>openParkingPhoto(s.photo,photo.alt));nav.appendChild(link);
   }
   document.querySelectorAll('.pin').forEach(p=>p.setAttribute('aria-pressed',String(p.dataset.id==s.id)));return;
  }
@@ -631,5 +631,7 @@ document.getElementById('closeHistory').addEventListener('click',()=>historieDia
 historieDialog.addEventListener('click',e=>{if(e.target===historieDialog)historieDialog.close()});
 const historieObserver=new MutationObserver(()=>{});
 </script>
-</body>
+<script>
+function openParkingPhoto(src,alt){const d=document.createElement('dialog');d.style.cssText='border:0;border-radius:12px;padding:12px;max-width:94vw;max-height:94vh;background:#fff';const b=document.createElement('button');b.textContent='Sluiten ✕';b.style.cssText='display:block;margin:0 0 8px auto;font-size:1rem;padding:8px 14px;cursor:pointer';const i=document.createElement('img');i.src=src;i.alt=alt;i.style.cssText='display:block;max-width:86vw;max-height:78vh;object-fit:contain';d.append(b,i);document.body.append(d);b.onclick=()=>d.close();d.addEventListener('close',()=>d.remove());d.addEventListener('click',e=>{if(e.target===d)d.close()});d.showModal();}
+</script></body>
 </html>
