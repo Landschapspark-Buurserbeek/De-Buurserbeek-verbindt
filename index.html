@@ -493,7 +493,9 @@ function setMapZoom(next){
  const centerX=(mapViewport.scrollLeft+mapViewport.clientWidth/2)/(previousWidth||1);
  const centerY=(mapViewport.scrollTop+mapViewport.clientHeight/2)/(mapShell.getBoundingClientRect().height||1);
  mapZoom=Math.min(2.5,Math.max(1,Math.round(next*100)/100));
- mapShell.style.width=(mapZoom*100)+'%';
+ mapShell.style.width=(mapZoom*108)+'%';
+ mapShell.style.setProperty('margin-top',(-mapZoom*7)+'%','important');
+ mapShell.style.setProperty('margin-left',(-mapZoom*3)+'%','important');
  document.getElementById('zoomValue').textContent=Math.round(mapZoom*100)+'%';
  document.getElementById('zoomOut').disabled=mapZoom<=1;
  document.getElementById('zoomIn').disabled=mapZoom>=2.5;
