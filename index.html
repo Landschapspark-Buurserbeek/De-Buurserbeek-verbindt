@@ -528,7 +528,11 @@ function selectSpot(s){
   document.getElementById('theme').textContent='';
   introElement.textContent='';detailElement.textContent='';detailElement.style.display='none';
   if(Number.isFinite(s.lat)&&Number.isFinite(s.lon)){
-   const a=document.createElement('a');a.href='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(s.lat+','+s.lon);a.target='_blank';a.rel='noopener noreferrer';a.textContent='Open navigatie';nav.appendChild(a);
+   const a=document.createElement('a');a.href='https://www.google.com/maps/dir/?api=1&destination='+encodeURIComponent(s.lat+','+s.lon);a.target='_blank';a.rel='noopener noreferrer';a.textContent='Navigatie';a.style.cssText='display:block;width:fit-content;font-size:1.3rem;font-weight:600;margin:6px 0 4px;text-decoration:underline';nav.appendChild(a);
+  }
+  if(s.photo){
+   const photo=document.createElement('img');photo.src=s.photo;photo.alt='Foto van '+s.name;photo.loading='lazy';photo.style.cssText='display:block;width:100%;max-width:480px;height:auto;border-radius:12px;margin:12px 0';
+   const link=document.createElement('a');link.href=s.photo;link.target='_blank';link.rel='noopener';link.title='Bekijk de foto groter';link.appendChild(photo);nav.appendChild(link);
   }
   document.querySelectorAll('.pin').forEach(p=>p.setAttribute('aria-pressed',String(p.dataset.id==s.id)));return;
  }
